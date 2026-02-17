@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: simple-app-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/fabriciocdn/git_ops.git'
+    targetRevision: HEAD
+    path: charts/simple-app
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc' # Cluster local (RKE2)
+    namespace: simple-app-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    createNamespace: true
