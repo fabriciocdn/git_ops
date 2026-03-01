@@ -64,8 +64,12 @@ ingress:
   enabled: true
   className: "alb"
   annotations:
+    alb.ingress.kubernetes.io/group.name: "alb-apps-tools"
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    ingress.kubernetes.io/ssl-redirect: "false"
+    
   hosts:
     - host: simple-app.lab.aws
       paths:
