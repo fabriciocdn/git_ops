@@ -67,7 +67,7 @@ ingress:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
   hosts:
-    - host: simple-app.aws
+    - host: simple-app.lab.aws
       paths:
         - path: /
           pathType: Prefix
